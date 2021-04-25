@@ -1,0 +1,130 @@
+<head>
+    <!-- For TODO List -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="/css/kanban.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- For Sidebar -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="/css/sidebar.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<!------ Include the above in your HEAD tag ---------->
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="container-fluid">
+    <div th:replace="fragments/sidebar :: sidebar"/>
+    <div id="sortableKanbanBoards" class="row">
+
+        <!--sütun başlangıç-->
+        <div class="panel panel-primary kanban-col">
+            <div class="panel-heading">
+                BACKLOG
+                <i class="fa fa-2x fa-plus-circle pull-right"></i>
+            </div>
+            <div class="panel-body">
+                <div id="BACKLOG" class="kanban-centered">
+                    <article class="kanban-entry grab" th:each="item : ${backlogTasks}" id="${item.id}" draggable="true">
+                        <div class="kanban-entry-inner">
+                            <div class="kanban-label">
+
+                                <form role="form" action="#" th:action="@{/kanban/{projectId}/task/{taskId}(projectId=${projectId}, taskId=${item.id})}" th:method="delete">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <button type="submit">
+                                        <img src="/img/delete.png" draggable="false" style="width: 12px; height: 12px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                    </button>
+                                </form>
+
+                                <h2><a th:href="@{/kanban/{projectId}/task/{taskId}(projectId=${projectId}, taskId=${item.id})}" th:text="${item.title}" /><span th:text="${item.reporter.name}" /> </h2>
+                                <p th:text="${item.description}" />
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="panel-footer">
+
+                <a th:href="@{/kanban/{projectId}/new(projectId=${projectId})}">Add a card...</a>
+            </div>
+        </div>
+        <!--sütun bitiş-->
+        <!--sütun başlangıç-->
+        <div class="panel panel-primary kanban-col">
+            <div class="panel-heading">
+                IN PROGRESS
+                <i class="fa fa-2x fa-plus-circle pull-right"></i>
+            </div>
+            <div class="panel-body">
+                <div id="IN_PROGRESS" class="kanban-centered">
+
+                    <article class="kanban-entry grab" th:each="item : ${inProgressTasks}" id="${item.id}" draggable="true">
+                        <div class="kanban-entry-inner">
+                            <div class="kanban-label">
+
+                                <form role="form" action="#" th:action="@{/kanban/{projectId}/task/{taskId}(projectId=${projectId}, taskId=${item.id})}" th:method="delete">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <button type="submit">
+                                        <img src="/img/delete.png" draggable="false" style="width: 12px; height: 12px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                    </button>
+                                </form>
+
+                                <h2><a th:href="@{/kanban/{projectId}/task/{taskId}(projectId=${projectId}, taskId=${item.id})}" th:text="${item.title}" /><span th:text="${item.reporter.name}" /> </h2>
+                                <p th:text="${item.description}" />
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+        <!--sütun bitiş-->
+        <!--sütun başlangıç-->
+        <div class="panel panel-primary kanban-col">
+            <div class="panel-heading">
+                DONE
+                <i class="fa fa-2x fa-plus-circle pull-right"></i>
+            </div>
+            <div class="panel-body">
+                <div id="DONE" class="kanban-centered">
+
+                    <article class="kanban-entry grab" th:each="item : ${doneTasks}" id="${item.id}" draggable="true">
+                        <div class="kanban-entry-inner">
+                            <div class="kanban-label">
+
+                                <form role="form" action="#" th:action="@{/kanban/{projectId}/task/{taskId}(projectId=${projectId}, taskId=${item.id})}" th:method="delete">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <button type="submit">
+                                        <img src="/img/delete.png" draggable="false" style="width: 12px; height: 12px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                    </button>
+                                </form>
+
+                                <h2><a th:href="@{/kanban/{projectId}/task/{taskId}(projectId=${projectId}, taskId=${item.id})}" th:text="${item.title}" /><span th:text="${item.reporter.name}" /> </h2>
+                                <p th:text="${item.description}" />
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+        <!--sütun bitiş-->
+
+
+    </div>
+</div>
+
+
+<!-- Static Modal -->
+<div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-refresh fa-5x fa-spin"></i>
+                    <h4>Processing...</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
