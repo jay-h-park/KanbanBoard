@@ -5,7 +5,10 @@
 `Add a card...`를 선택함으로써 해당 프로젝트에 ISSUE를 추가할 수 있고, <br>
 각 ISSUE의 제목을 선택함으로써 ISSUE의 내용을 수정할 수 있고, <br>
 ISSUE 위에 존재하는 휴지통 아이콘을 선택함으로써 ISSUE를 제거할 수 있습니다.
-<iframe width="640" height="360" src="https://youtu.be/euQXlNSvJ3Q" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+
+[![데모 영상 링크](https://img.youtube.com/vi/euQXlNSvJ3Q/maxresdefault.jpg)](https://youtu.be/euQXlNSvJ3Q)
+
+
 
 # How to Start
 1. Use IntelliJ IDE and Run KanbanApplication
