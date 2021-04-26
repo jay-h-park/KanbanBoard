@@ -28,9 +28,8 @@ public class ProjectService {
     }
 
     @Transactional
-    public Project findById(Long id) {
-        return projectRepository.findById(id)
-                .orElse(new Project());
+    public Optional<Project> findById(Long id) {
+        return projectRepository.findById(id);
     }
 
     @Transactional

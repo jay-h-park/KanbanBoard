@@ -90,7 +90,7 @@ public class KanbanController {
         task.setTitle(taskForm.getTitle());
         task.setDueDate(taskForm.getDueDate());
         task.setTaskStatus(TaskStatus.BACKLOG);
-        task.setProject(projectService.findById(id));
+        task.setProject(projectService.findById(id).orElse(new Project()));
 
         Long memberId = (Long)httpSession.getAttribute("id");
         Member member = memberService.findById(memberId);
