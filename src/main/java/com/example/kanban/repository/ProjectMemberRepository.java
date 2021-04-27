@@ -1,17 +1,18 @@
 package com.example.kanban.repository;
 
 import com.example.kanban.domain.ProjectMember;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
-public interface ProjectMemberRepository extends CrudRepository<ProjectMember, Long> {
+public interface ProjectMemberRepository extends JpaRepository<ProjectMember, Long> {
 
     @Override
     Optional<ProjectMember> findById(Long aLong);
 
     @Override
-    Iterable<ProjectMember> findAll();
+    List<ProjectMember> findAll();
 
     Iterable<ProjectMember> findByProject_Id(Long id);
 
@@ -22,5 +23,5 @@ public interface ProjectMemberRepository extends CrudRepository<ProjectMember, L
     @Override
     <S extends ProjectMember> S save(S entity);
 
-
+    Long deleteByProjectId(Long projectId);
 }

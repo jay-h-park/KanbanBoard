@@ -24,4 +24,7 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
 
     @Override
     void delete(Project entity);
+
+    @Override
+    void deleteById(Long id);
 }

@@ -50,4 +50,9 @@ public class ProjectMemberService {
     public void delete(ProjectMember projectMember) {
         projectMemberRepository.delete(projectMember);
     }
+
+    @Transactional
+    public Long deleteByProjectId(Long projectId) {
+        return projectMemberRepository.deleteByProjectId(projectId);
+    }
 }

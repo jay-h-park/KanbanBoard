@@ -43,4 +43,9 @@ public class TaskService {
     public void remove(Long id, Long taskId) {
         taskRepository.remove(id, taskId);
     }
+
+    @Transactional
+    public void deleteByProjectId(Long projectId) {
+        taskRepository.deleteByProjectId(projectId);
+    }
 }

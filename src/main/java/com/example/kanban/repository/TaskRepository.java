@@ -56,4 +56,11 @@ public class TaskRepository {
         Task task = em.find(Task.class, taskId);
         em.remove(task);
     }
+
+    public void deleteByProjectId(Long projectId) {
+        em.createQuery(
+                "delete from Task t where t.project.id = :projectId")
+                .setParameter("projectId", projectId)
+                .executeUpdate();
+    }
 }
