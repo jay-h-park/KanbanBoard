@@ -33,9 +33,7 @@ public class ProjectRestController {
 
     @GetMapping
     public ApiUtils.ApiResult<List<ProjectDto>> getAllProjects() {
-        List<ProjectDto> projectDtoList = projectService.findAll().stream()
-                .map(ProjectDto::new)
-                .collect(Collectors.toList());
+        List<ProjectDto> projectDtoList = projectService.findAllWithTask();
 
         return ApiUtils.success(projectDtoList);
     }

@@ -1,5 +1,6 @@
 package com.example.kanban.service;
 
+import com.example.kanban.apis.ProjectDto;
 import com.example.kanban.domain.Member;
 import com.example.kanban.domain.Project;
 import com.example.kanban.repository.ProjectRepository;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +37,14 @@ public class ProjectService {
     @Transactional
     public List<Project> findAll() {
         return (List<Project>) projectRepository.findAll();
+    }
+
+    @Transactional
+    public List<ProjectDto> findAllWithTask() {
+        List<Project> projects = (List<Project>) projectRepository.findAllWithTask();
+        return projects.stream()
+                .map(ProjectDto::new)
+                .collect(Collectors.toList());
     }
 
     @Transactional

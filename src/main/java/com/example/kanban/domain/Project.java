@@ -14,6 +14,7 @@ import java.util.List;
 public class Project {
 
     @Id @GeneratedValue
+    @Column(name = "project_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -25,13 +26,6 @@ public class Project {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
     private List<ProjectMember> projectMembers = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "Project{" +
-                "id=" + id +
-                ", owner=" + owner +
-                ", name='" + name + '\'' +
-                ", projectMembers=" + projectMembers +
-                '}';
-    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+    private List<Task> tasks = new ArrayList<>();
 }
